@@ -80,6 +80,48 @@ We produce descriptive statistics for each attribute or column for our initial a
 * The average age of renters is **34 years old**.
 * The **average rating is 9.08** with rating range of 2-10. This is a high overall rating which implies high customer satisfaction.
 
+![alt text](https://github.com/KarlRetumban/SampMG_SA_RS/blob/main/images/descriptives.PNG)
+
+
+**Below are some additional insights.**
+We get the topmost rented attires as well as the top reasons for renting.
+
+**Top 5 attires being rented**
+1. Dress
+2. Gown
+3. Sheath
+4. Shift
+5. Jumpsuit
+
+**Top 5 reasons for renting**
+1. Wedding
+2. Formal Affair
+3. Party
+4. Everyday
+5. Work
+
+![alt text](https://github.com/KarlRetumban/SampMG_SA_RS/blob/main/images/top5.PNG)
+
+
+We get the Top 3 attires being rented on each event. 
+Note that only the Top 5 reasons for renting were considered. Below are the summary.
+
+* Wedding: dress, gown, sheath
+* Formal Affair: gown, dress, sheath
+* Party: dress, sheath, jumpsuit
+* Everyday: dress, top, jacket
+* Work: dress, sheath, top
+
+
+~~~ python
+# Input rented_for options: wedding,formal affair, party, everyday, work  (Note: The top 5 reason for renting were only considered)
+event_ = input('Input event: ')
+
+event = renttherunway_new[renttherunway_new['rented_for']==event_]
+dress_event = event.groupby(['rented_for','category'])['user_id'].aggregate('count').sort_values(ascending=False).head(3)
+
+print(dress_event) 
+~~~
 
 
 
