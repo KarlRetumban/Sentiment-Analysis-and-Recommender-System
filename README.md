@@ -1,6 +1,15 @@
+# Sentiment Analysis and Recommender System 
+### Description of the Use Case
+We analyze the Renttherunway Clothing Fit data. The dataset contains information about rented attires for certain occassions. It also includes the ratings given by the renters. The user feedback or user review is also included in the data as well as information about the user and the attire.
+
+We will apply Sentiment Analysis to the clothing fit review data and determine the customer sentiments regarding the rented attire. We can also determine the level of satisfaction of customers, whether it is positive, negative or neutral out of their feedback reviews. We will also determine the consistensy of sentiments with respect to the ratuings given and check if the two customer feedback align.
+
+We then build a Recommender System that will suggest the next most likely items or attire category the customer will avail in the future using the users historical preference.
+
+
+
 #### Connect Python to MongoDB Compass
 * We import data from MongoDB to Python.
-* We then analyze the Renttherunway Clothing Review data.
 
 
 ~~~ python
@@ -55,28 +64,21 @@ Below is the dataframe output.
 
 
 #### Data Preparation
-The chosen dataset is the Clothing fit data, specifically the RentTheRunway JSON dataset.
+* We examine the data in terms of its size (total variables/columns and observations), actual values, completeness and data types. The actual checking of the dataset is a very important step in data analysis.
+* We check the different data types of the columns of the dataset. We then evaluate for missing data. After identifying the missing data, we remove all observations with missing data and proceed with analyzing the observations with complete data.
+* We also do transformation of variables by creating a new variable review_year.
 
-The dataset contains information about rented attires for certain occassions. It also includes the ratings given by the renters. The user feedback or user review is also included in the data as well as information about the user and the attire.
+_____________________________________________
 
-We import Pandas library and load the data Renttherunway JSON Data into pandas dataframe.
-
-We examine the data in terms of its size (total variables/columns and observations), actual values, completeness and data types.
-
-The actual checking of the dataset is a very important step in data analysis.
-
-
-
-
-##### Descriptive Analytics
+### Descriptive Analysis
 We produce descriptive statistics for each attribute or column for our initial analysis. We also produce some statistics and figures which will give us more insights about the data. Below are some notable insights from the renttherunway dataset.
-* In our new dataset, we have 146,381 observations.
-* There are 77,347 unique users. This implies that there are several repeat customers renting attires.
-* The number of repeat cutomers, i.e., users who rented attires at least twice is 12,564.
-* There are 68 tyes of attire being rented (under category varaiable), and the top rented attire is a dress.
-* Wedding is the topmost reason for renting (under rented_for variable).
-* The average age of renters is 34 years old.
-* The average rating is 9.08 with rating range of 2-10. This is a high overall rating which implies high customer satisfaction.
+* In our new dataset, we have **146,381** observations.
+* There are **77,347 unique customers**. This implies that there are several repeat customers renting attires.
+* The number of **repeat cutomers** is **12,564**, i.e., the cutomers who rented attires at least twice.
+* There are **68 types of attire** being rented (under category varaiable), and the **top rented attire** is a **dress**.
+* **Wedding** is the topmost reason for renting (under rented_for variable).
+* The average age of renters is **34 years old**.
+* The **average rating is 9.08** with rating range of 2-10. This is a high overall rating which implies high customer satisfaction.
 
 
 
