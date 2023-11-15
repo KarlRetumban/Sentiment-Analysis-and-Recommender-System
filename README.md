@@ -187,9 +187,9 @@ plot.set_title('Top 5 rented attire: Average Rating')
 plot.set_ylim([8.2, 10.2])
 ~~~
 
+_________________________________________________
 
-
-#### Sentimental Analysis
+### Sentimental Analysis
 We analyze the customers feedback or review using Sentiment Analysis. Sentiment Analysis is a natural language processing technique that analyzes and identifies the "mood" or sentiment in a text. With Sentiment Analysis, we can determine the kind of customer satisfaction, whether it is positive, negative or neutral, out of their feedback reviews. We also produced a worldcloud in order to visualize the customer feedback and see the dominant words used by the users in writing their feedback reviews.
 
 We subset the data. We only get 1000 rows for runtime purposes. (edit and rerun the whole data)
@@ -297,8 +297,9 @@ We determine whether the overall sentiment of customers are aligned with fit fee
 
 
 
+______________________________________
 
-#### Recommender System
+### Recommender System
 We create a Recommender System using the attires rented by customers and the given ratings. The recommender system uses Collaborative Filtering using SVD Model(Singular Value Decomposition). The variables to be used are user_id, category and ratings.
 
 We only consider the repeat customers with at least 10 rents so we have more relibale data to be fed into the Recommender System. We then provide a recommendation on the next most likely items or attire category the customer will avail in the future. The Top 5 attire recommended will be extracted.
