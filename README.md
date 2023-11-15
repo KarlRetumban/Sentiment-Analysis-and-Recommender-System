@@ -264,11 +264,95 @@ We determine whether the overall sentiment of customers are aligned with fit fee
 
 
 
+**We produce a Wordcloud**
+This visualization gives us an idea about the dominant words used in feedback reviews. The bigger the word, the more occurence of that word.
+
+* The words dress is the biggest word. This is expected since this is also the most rented attire.
+* There are a lot 'big sized' positive words like great, beautiful, loved, comfotable, and perfect. And this dominant occurence of positive words are in agreement with our Sentiment Analysis which has majority positive sentiments.
 
 
-#### Recommender System
+![alt text](https://github.com/KarlRetumban/SampMG_SA_RS/blob/main/images/wordcloud.PNG)
 
 
 ~~~ python
+#Wordcloud
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
 
+text2 = " ".join(review_text for review_text in renttherunway_wcloud.review_text)
+wordcloud = WordCloud(max_font_size=60, max_words=100000, background_color="white").generate(text2)
+
+#Plotting the image with axis off as we don’t want axis ticks in our image.
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis("off")
+plt.show()
+~~~
+
+
+
+#### Recommender System
+We create a Recommender System using the attires rented by customers and the given ratings. The recommender system uses Collaborative Filtering using SVD Model(Singular Value Decomposition). The variables to be used are user_id, category and ratings.
+
+We only consider the repeat customers with at least 10 rents so we have more relibale data to be fed into the Recommender System. We then provide a recommendation on the next most likely items or attire category the customer will avail in the future. The Top 5 attire recommended will be extracted.
+
+
+
+![alt text](https://github.com/KarlRetumban/SampMG_SA_RS/blob/main/images/recommender_system.PNG)
+
+
+
+~~~ python
+# We only consider the repeat customer data with at least 10 rents availed.
+data_10 = renttherunway_new['user_id'].value_counts()
+data_10 = data_10.reset_index()
+data_10 = data_10[data_10['user_id']>10]
+data_10.rename(columns={"user_id":"count", "index":"user_id"}, inplace=True)
+
+# Merge with the original data to get raw data details of the users
+data_reco = pd.merge(left=data_10, right=renttherunway_new, how='left', on='user_id')
+
+# We select the variables needed for building a recommender system
+data_reco = data_reco[["user_id", "category","rating"]]
+
+# We use the Surprise library in implementing our Recommender System
+# We also import the SVD module to be used in building the model
+
+from surprise import Reader, Dataset, SVD
+from surprise.model_selection.validation import cross_validate
+
+# Create a surprise Dataset object
+reader = Reader()
+data_r = Dataset.load_from_df(data_reco[["user_id", "category","rating"]], reader)
+# SVD Algo
+svd = SVD()
+
+# We run a 5-fold cross-validation
+cross_validate(svd, data_r, measures=['RMSE', 'MAE'], cv=10, verbose=True)
+
+#Train the recommendation model
+trainset = data_r.build_full_trainset()
+svd.fit(trainset)
+
+# Create a dataframe for the attire category list 
+rent_category = data_reco.groupby(["category"])["user_id"].count()
+rent_category_list = rent_category.reset_index()
+rent_category_list = rent_category_list["category"]
+rent_category_list = rent_category_list.reset_index()
+rent_category_list
+
+# Recommend the most likely attire the customer will rent
+
+# Copy the attire list
+attires = rent_category_list.copy()
+
+# Get the User ID of Customer for recommendation. Sample User ID: 691468
+userID = input('Select User ID from the data. \n \tInput the User ID: ')
+
+# Recommend the attires the customer will most likely avail
+attires['Estimate_Score'] = attires['category'].apply(lambda x: svd.predict(userID, x).est)
+attires_reco = attires.sort_values(by=['Estimate_Score'], ascending=False)
+
+# Rename the 'category' (recommended) to 'Recommended Attire'
+attires_reco.rename(columns={"category":"Recommended Attire"}, inplace=True)
+attires_reco.head(5)
 ~~~
