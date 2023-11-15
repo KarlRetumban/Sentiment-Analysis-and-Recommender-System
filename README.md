@@ -1,4 +1,10 @@
 # Sentiment Analysis and Recommender System 
+#### We apply the following techniques in analyzing the Clothing Fit data.
+* Descriptive Analysis
+* Data Visualization
+* Sentiment Analysis
+* Recommedder System
+
 ### Description of the Use Case
 We analyze the Renttherunway Clothing Fit data. The dataset contains information about rented attires for certain occassions. It also includes the ratings given by the renters. The user feedback or user review is also included in the data as well as information about the user and the attire.
 
@@ -188,6 +194,33 @@ We analyze the customers feedback or review using Sentiment Analysis. Sentiment 
 
 We subset the data. We only get 1000 rows for runtime purposes. (edit and rerun the whole data)
 
+**We first produce a Wordcloud**
+This visualization gives us an idea about the dominant words used in feedback reviews. The bigger the word, the more occurence of that word.
+
+* The words dress is the biggest word. This is expected since this is also the most rented attire.
+* There are a lot 'big sized' positive words like great, beautiful, loved, comfotable, and perfect. And this dominant occurence of positive words are in agreement with our Sentiment Analysis which has majority positive sentiments.
+
+
+![alt text](https://github.com/KarlRetumban/SampMG_SA_RS/blob/main/images/wordcloud.PNG)
+
+
+~~~ python
+#Wordcloud
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+
+text2 = " ".join(review_text for review_text in renttherunway_wcloud.review_text)
+wordcloud = WordCloud(max_font_size=60, max_words=100000, background_color="white").generate(text2)
+
+#Plotting the image with axis off as we don’t want axis ticks in our image.
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis("off")
+plt.show()
+~~~
+
+
+**We then apply Sentiment Analysis**
+We will examine those reviews in order to determine the "sentiment" - whether it has overall positive, neutral or negative reviews.
 
 ~~~ python
 import nltk
@@ -262,31 +295,6 @@ We determine whether the overall sentiment of customers are aligned with fit fee
 
 ![alt text](https://github.com/KarlRetumban/SampMG_SA_RS/blob/main/images/sa_byfitfeedback.PNG)
 
-
-
-**We produce a Wordcloud**
-This visualization gives us an idea about the dominant words used in feedback reviews. The bigger the word, the more occurence of that word.
-
-* The words dress is the biggest word. This is expected since this is also the most rented attire.
-* There are a lot 'big sized' positive words like great, beautiful, loved, comfotable, and perfect. And this dominant occurence of positive words are in agreement with our Sentiment Analysis which has majority positive sentiments.
-
-
-![alt text](https://github.com/KarlRetumban/SampMG_SA_RS/blob/main/images/wordcloud.PNG)
-
-
-~~~ python
-#Wordcloud
-import matplotlib.pyplot as plt
-from wordcloud import WordCloud
-
-text2 = " ".join(review_text for review_text in renttherunway_wcloud.review_text)
-wordcloud = WordCloud(max_font_size=60, max_words=100000, background_color="white").generate(text2)
-
-#Plotting the image with axis off as we don’t want axis ticks in our image.
-plt.imshow(wordcloud, interpolation='bilinear')
-plt.axis("off")
-plt.show()
-~~~
 
 
 
