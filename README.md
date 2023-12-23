@@ -192,7 +192,6 @@ _________________________________________________
 ### Sentimental Analysis
 We analyze the customers feedback or review using Sentiment Analysis. Sentiment Analysis is a natural language processing technique that analyzes and identifies the "mood" or sentiment in a text. With Sentiment Analysis, we can determine the kind of customer satisfaction, whether it is positive, negative or neutral, out of their feedback reviews. We also produced a worldcloud in order to visualize the customer feedback and see the dominant words used by the users in writing their feedback reviews.
 
-We subset the data. We only get 1000 rows for runtime purposes. (edit and rerun the whole data)
 
 **We first produce a Wordcloud**
 This visualization gives us an idea about the dominant words used in feedback reviews. The bigger the word, the more occurence of that word.
