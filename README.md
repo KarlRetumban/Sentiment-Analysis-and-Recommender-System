@@ -1,9 +1,9 @@
 # Sentiment Analysis and Recommender System 
-#### We apply the following techniques in analyzing the Clothing Fit data.
+#### We apply and do the following techniques in analyzing the Clothing Fit data.
 * Descriptive Analysis
 * Data Visualization
 * Sentiment Analysis
-* Recommeder System
+* Build a Recommender System
 
 ### Description of the Use Case
 We analyze the Renttherunway Clothing Fit data. The dataset contains information about rented attires for certain occassions. It also includes the ratings given by the renters. The user feedback or user review is also included in the data as well as information about the user and the attire.
