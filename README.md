@@ -10,14 +10,15 @@ We analyze the Renttherunway Clothing Fit data. The dataset contains information
 
 We conduct exploratory data analysis providing descriptive statistics and data visualizatiuon so we can have a good idea of the data and identify patterns and relationships among the variables.
 
-We will apply Sentiment Analysis to the clothing fit review data and determine the customer sentiments regarding the rented attire. We can also determine the level of satisfaction of customers, whether it is positive, negative or neutral out of their feedback reviews. We will also determine the consistensy of sentiments with respect to the ratuings given and check if the two customer feedback align.
+We will apply Sentiment Analysis to the clothing fit review data and determine the customer sentiments regarding the rented attire. We can also determine the level of satisfaction of customers, whether it is positive, negative or neutral out of their feedback reviews. We will also determine the consistensy of sentiments with respect to the ratings given and check if the two customer feedback align.
 
 We then build a Recommender System that will suggest the next most likely items or attire category the customer will avail in the future using the users historical preference.
 
 
 
 #### Connect Python to MongoDB Compass
-* We import data from MongoDB to Python.
+* Our dataset is stored in MongoDB.
+* We import the JSON data from MongoDB to Python.
 
 
 ~~~ python
